@@ -1,10 +1,6 @@
-/* This example requires Tailwind CSS v2.0+ */
-import {
-	CheckIcon,
-	ThumbUpIcon,
-	UserIcon,
-	XIcon,
-} from '@heroicons/react/solid';
+import { CheckIcon, XIcon } from '@heroicons/react/solid';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const timeline = [
 	{
@@ -114,6 +110,34 @@ function classNames(...classes) {
 }
 
 export default function OrderFeed() {
+	const [loading, setLoading] = useState(true);
+	const [orders, setOrders] = useState(null);
+
+	async function getOrders() {
+		setLoading(true);
+		axios
+			.get('http://localhost:8080//allincompleteorders', {
+				headers: {
+					// Authorization: `Bearer ${token}`,
+				},
+			})
+			.then((response) => {
+				setOrders(response.data);
+			})
+			.catch((error) => {
+				console.error('Error fetching data: ', error);
+			})
+			.finally(() => {
+				setLoading(false);
+			});
+	}
+
+	useEffect(() => {
+		getOrders();
+	}, []);
+
+	if (loading) return <p>Loading</p>;
+
 	return (
 		<div className='flow-root'>
 			<ul role='list' className='-mb-8'>
