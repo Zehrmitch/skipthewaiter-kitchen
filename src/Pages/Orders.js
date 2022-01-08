@@ -1,8 +1,10 @@
 import OrderCards from '../Components/OrderCards.js';
 import OrderFeed from '../Components/OrderFeed.js';
 import OrderStats from '../Components/OrderStats.js';
+import { withAuthenticationRequired  } from "@auth0/auth0-react";
+import  Loading  from '../Components/Loading'
 
-export default function Orders() {
+const Orders = () => {
 	return (
 		<div className='h-screen grid grid-'>
 			<div className='flex md:flex-row flex-col h-full'>
@@ -38,3 +40,7 @@ export default function Orders() {
 		</div>
 	);
 }
+export default withAuthenticationRequired(Orders, {
+	onRedirecting: () => <Loading />,
+	returnTo: () => '/'
+   });

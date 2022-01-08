@@ -18,4 +18,7 @@ const Profile = () => {
   )
 }
 
-export default Profile;
+export default withAuthenticationRequired(Profile, {
+  onRedirecting: () => <Loading />,
+  returnTo: () => '/profile'
+ });
