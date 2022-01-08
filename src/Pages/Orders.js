@@ -4,9 +4,9 @@ import OrderStats from '../Components/OrderStats.js';
 
 export default function Orders() {
 	return (
-		<div className='h-screen bg-[#FCF3D9]'>
-			<div className='flex flex-row  h-full'>
-				<div className='basis-1/4 m-6 bg-white rounded-lg shadow divide-gray-200 p-6 overflow-scroll'>
+		<div className='h-screen grid grid-'>
+			<div className='flex md:flex-row flex-col h-full'>
+				<div className='basis-1/4 m-6 bg-white rounded-lg shadow divide-gray-200 p-6 overflow-scroll min-w-[250px]'>
 					<p className='flex justify-center mt-2 text-lg text-[#68C9BA] font-bold'>
 						Incoming Orders
 					</p>
