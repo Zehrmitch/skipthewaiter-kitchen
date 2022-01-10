@@ -2,7 +2,7 @@ import React from 'react';
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 import JSONPretty from 'react-json-pretty';
 import Loading from '../Components/Loading';
-import NavBar from '../Components/nav-bar';
+import NavBar from '../Components/NavBar.js';
 
 const Profile = () => {
 	const { user, isAuthenticated } = useAuth0();
