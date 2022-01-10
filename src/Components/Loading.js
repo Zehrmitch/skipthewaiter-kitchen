@@ -1,10 +1,10 @@
-import React from "react";
-import loading from "../Assets/loading.svg";
+import React from 'react';
+import loading from '../Assets/loading.svg';
 
 const Loading = () => (
-  <div className="spinner">
-    <img src={loading} alt="Loading..." />
-  </div>
+	<div className='spinner mt-64 flex items-center justify-center'>
+		<img src={loading} alt='Loading...' />
+	</div>
 );
 
 export default Loading;
