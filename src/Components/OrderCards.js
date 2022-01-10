@@ -69,11 +69,12 @@ export default function OrderCards() {
 	}, []);
 
 	function handleResponse(response) {
-		setOrders(response);
+		setOrders(response.data);
+		console.log(response.data);
 		setLoaded(true);
 	}
 	if (!loaded) {
-		const apiUrl = `http://localhost:8080/api/order/allincompleteorders`;
+		const apiUrl = 'http://localhost:8080/api/order/allincompleteorders';
 		axios.get(apiUrl).then(handleResponse);
 		return <h1>Loading</h1>;
 	} else {

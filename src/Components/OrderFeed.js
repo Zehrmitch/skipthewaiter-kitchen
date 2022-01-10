@@ -54,7 +54,7 @@ const timeline = [
 		iconBackground: 'bg-green-500',
 	},
 	{
-		id: 1,
+		id: 6,
 		content: 'Applied to',
 		target: 'Front End Developer',
 		href: '#',
@@ -64,7 +64,7 @@ const timeline = [
 		iconBackground: 'bg-green-400',
 	},
 	{
-		id: 2,
+		id: 7,
 		content: 'Advanced to phone screening by',
 		target: 'Bethany Blake',
 		href: '#',
@@ -74,7 +74,7 @@ const timeline = [
 		iconBackground: 'bg-red-500',
 	},
 	{
-		id: 3,
+		id: 8,
 		content: 'Completed phone screening with',
 		target: 'Martha Gardner',
 		href: '#',
@@ -84,7 +84,7 @@ const timeline = [
 		iconBackground: 'bg-green-500',
 	},
 	{
-		id: 4,
+		id: 9,
 		content: 'Advanced to interview by',
 		target: 'Bethany Blake',
 		href: '#',
@@ -94,7 +94,7 @@ const timeline = [
 		iconBackground: 'bg-red-500',
 	},
 	{
-		id: 5,
+		id: 10,
 		content: 'Completed interview with',
 		target: 'Katherine Snyder',
 		href: '#',
