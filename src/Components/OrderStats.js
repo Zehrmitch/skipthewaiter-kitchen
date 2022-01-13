@@ -1,5 +1,7 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { ArrowSmDownIcon, ArrowSmUpIcon } from '@heroicons/react/solid';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const stats = [
 	{
@@ -30,6 +32,33 @@ function classNames(...classes) {
 }
 
 export default function OrderStats() {
+	// const [priceAvg, setPriceAvg] = useState(0);
+	// const [orderAvg, setOrderAvg] = useState(0);
+	// const [loaded, setLoaded] = useState(false);
+
+	// useEffect(() => {
+	// 	setLoaded(false);
+	// }, []);
+
+	// function setPrice(response) {
+	// 	setPriceAvg(response.data.avgTotalPrice);
+	// }
+
+	// function setOrder(response) {
+	// 	setOrderAvg(response.data.avgCompletionTime);
+	// 	setLoaded(true);
+	// }
+
+	// if (!loaded) {
+	// 	axios
+	// 		.get('http://localhost:8080/api/order/avgorderpricetoday')
+	// 		.then(setPrice);
+	// 	axios
+	// 		.get('http://localhost:8080/api/order/avgorderedtoreadytoday')
+	// 		.then(setOrder);
+
+	// 	return <h1>Loading</h1>;
+	// } else {
 	return (
 		<div className='border-8 border-[#68C9BA] rounded-lg'>
 			<dl className='grid grid-cols-1 bg-white overflow-hidden shadow divide-y divide-gray-200 md:grid-cols-3 md:divide-y-0 md:divide-x'>
