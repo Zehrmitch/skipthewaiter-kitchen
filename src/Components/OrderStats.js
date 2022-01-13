@@ -47,7 +47,7 @@ export default function OrderStats() {
 		axios
 			.get('http://localhost:8080/api/order/avgorderpricetoday')
 			.then((data) => {
-				res = data.avgTotalPrice;
+				res = data.data.avgTotalPrice;
 				console.log('getAvgPrice:', data.data.avgTotalPrice);
 				setAveragePrice(res);
 				return res;
@@ -60,9 +60,9 @@ export default function OrderStats() {
 		axios
 			.get('http://localhost:8080/api/order/avgorderedtoreadytoday')
 			.then((data) => {
-				res = data.avgTotalPrice;
+				res = data.data.avgCompletionTime;
 				console.log('avgCompletionTime:', data.data.avgCompletionTime);
-				setAveragePrice(res);
+				setAverageOrder(res);
 				setLoaded(true);
 				return res;
 			});
@@ -84,8 +84,8 @@ export default function OrderStats() {
 							</dt>
 							<dd className='mt-1 flex justify-between items-baseline md:block lg:flex'>
 								<div className='flex items-baseline text-md font-semibold text-indigo-600'>
-									{averagePrice}
-									{averageOrder}
+									<a>{averagePrice}</a>
+									<a>{averageOrder}</a>
 									<span className='ml-2 text-sm font-medium text-gray-500'>
 										from {item.previousStat}
 									</span>
