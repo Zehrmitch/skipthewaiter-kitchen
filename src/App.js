@@ -4,6 +4,8 @@ import { useAuth0 } from '@auth0/auth0-react';
 import Loading from './Components/Loading';
 import Profile from './Pages/Profile';
 import Login from './Pages/Login';
+import History from './Pages/History';
+import OrderOverview from './Pages/OrderOverview';
 
 function App() {
 	const { isLoading } = useAuth0();
@@ -17,6 +19,11 @@ function App() {
 			<Route exact path='/' element={<Login />}></Route>
 			<Route exact path='/dashboard' element={<Orders />}></Route>
 			<Route exact path='/profile' element={<Profile />}></Route>
+			<Route exact path='/history' element={<History />}></Route>
+			<Route
+				path='/order/:tableId/:storeId'
+				element={<OrderOverview />}
+			></Route>
 		</Routes>
 	);
 }
