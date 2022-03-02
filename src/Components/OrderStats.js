@@ -85,7 +85,6 @@ export default function OrderStats() {
 							<dd className='mt-1 flex justify-between items-baseline md:block lg:flex'>
 								<div className='flex items-baseline text-md font-semibold text-indigo-600'>
 									<a>{averagePrice}</a>
-									<a>{averageOrder}</a>
 									<span className='ml-2 text-sm font-medium text-gray-500'>
 										from {item.previousStat}
 									</span>
