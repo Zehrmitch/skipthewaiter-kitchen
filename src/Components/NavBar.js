@@ -1,7 +1,13 @@
-
 import { Fragment } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { useAuth0 } from '@auth0/auth0-react';
+import {
+	TemplateIcon,
+	UserIcon,
+	TableIcon,
+	EyeIcon,
+} from '@heroicons/react/solid';
+import AuthenticationButton from './authentication-button';
 
 const tabs = [
 	{
@@ -22,15 +28,18 @@ const tabs = [
 		id: 2,
 		current: false,
 	},
-
-import { TemplateIcon, UserIcon, TableIcon, EyeIcon } from '@heroicons/react/solid';
-import AuthenticationButton from './authentication-button';
-
-const tabs = [
-	{ name: 'Dashboard', href: '/dashboard', icon: TemplateIcon, id: 0 },
-	{ name: 'Profile', href: '/profile', icon: UserIcon, id: 1 },
-	{ name: 'Menu Builder', href:'/menubuilder', icon: TableIcon, id: 2},
-	{ name: 'Menu Preview', href:'/menupreview', icon: EyeIcon, id: 3}
+	{
+		name: 'Menu Builder',
+		href: '/menubuilder',
+		id: 3,
+		current: false,
+	},
+	{
+		name: 'Menu Preview',
+		href: '/menupreview',
+		id: 4,
+		current: false,
+	},
 ];
 
 function classNames(...classes) {
