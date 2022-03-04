@@ -21,7 +21,6 @@ function App() {
 			<Route exact path='/' element={<Login />}></Route>
 			<Route exact path='/dashboard' element={<Orders />}></Route>
 			<Route exact path='/profile' element={<Profile />}></Route>
-
 			<Route exact path='/history' element={<History />}></Route>
 			<Route
 				path='/order/:tableId/:storeId'

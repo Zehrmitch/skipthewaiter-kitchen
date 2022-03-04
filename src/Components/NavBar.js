@@ -1,6 +1,13 @@
 import { Fragment } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { useAuth0 } from '@auth0/auth0-react';
+import {
+	TemplateIcon,
+	UserIcon,
+	TableIcon,
+	EyeIcon,
+} from '@heroicons/react/solid';
+import AuthenticationButton from './authentication-button';
 
 const tabs = [
 	{
