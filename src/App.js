@@ -7,7 +7,7 @@ import Login from './Pages/Login';
 import History from './Pages/History';
 import OrderOverview from './Pages/OrderOverview';
 import MenuBuilderPage from './Pages/MenuBuilder/MenuBuilderPage';
-
+import NotFoundPage from './Pages/NotFoundPage';
 
 function App() {
 	const { isLoading } = useAuth0();
@@ -27,7 +27,12 @@ function App() {
 				path='/order/:tableId/:storeId'
 				element={<OrderOverview />}
 			></Route>
-			<Route exact path='/menubuilder' element={<MenuBuilderPage />}></Route>
+			<Route
+				exact
+				path='/menubuilder'
+				element={<MenuBuilderPage />}
+			></Route>
+			<Route path='*' element={<NotFoundPage />} />
 		</Routes>
 	);
 }

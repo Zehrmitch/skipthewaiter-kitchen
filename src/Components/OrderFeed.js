@@ -61,7 +61,7 @@ export default function OrderFeed() {
 		const T = DT[1].split(':');
 		const day = new Date(MYD[0], MYD[1], MYD[2]);
 		const month = day.toLocaleString('default', { month: 'long' });
-		const result = month + ' ' + MYD[1] + ' ' + T[0] + ':' + T[1];
+		const result = month + ' ' + MYD[1] + ' @ ' + T[0] + ':' + T[1];
 		return result;
 	}
 
@@ -97,11 +97,9 @@ export default function OrderFeed() {
 														order.totalPrice
 													)}
 											</p>
-										</div>
-										<div className='text-right text-sm whitespace-nowrap text-gray-500'>
-											<time dateTime={order.timeOfOrder}>
+											<p className='text-xs text-gray-500'>
 												{formatDate(order.timeOfOrder)}
-											</time>
+											</p>
 										</div>
 									</div>
 								</div>

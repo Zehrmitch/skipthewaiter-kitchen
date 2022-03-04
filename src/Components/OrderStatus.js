@@ -59,12 +59,12 @@ const OrderStatus = (props) => {
 		return <p>Loading</p>;
 	} else {
 		return (
-			<div>
-				<div className='text-s font-small lex text-right pr-20'>
+			<div className='justify-center items-center flex flex-col'>
+				<div className='text-s font-small justify-center pt-4'>
 					{formatStatus()}
 				</div>
 				<div className='px-2 py-2'>
-					<div className='flex justify-end'>
+					<div className='flex pb-2'>
 						<div className='px-2 pr-4 py-2 bg-yellow-200 rounded-lg flex justify-between mr-2'>
 							<PlusIcon
 								className='w-6 h-6 text-gray-400'
