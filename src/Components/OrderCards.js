@@ -31,7 +31,7 @@ export default function OrderCards() {
 						key={order._id}
 						className='col-span-1 bg-white rounded-lg shadow divide-y flex-1 flex flex-col'
 					>
-						<div className='w-full items-center justify-between p-6 space-x-6 col-span-1'>
+						<div className='w-full h-full items-center justify-between p-6 space-x-6 col-span-1 relative'>
 							<div className='flex-1 truncate'>
 								<div className='flex items-center space-x-3'>
 									<h3 className='text-gray-900 text-xs font-medium truncate'>
@@ -44,17 +44,11 @@ export default function OrderCards() {
 										<li className='ml-2'>-{item}</li>
 									))}
 								</ul>
-								<span className='flex-shrink-0 inline-block px-2 py-0.5 text-green-800 text-xs font-medium bg-green-100 rounded-full'>
-									Cost: $
-									{parseFloat(order.totalPrice).toFixed(2)}
-								</span>
-							</div>
-							<div className='justify-between pt-6 col-span-1'>
-								<h3 className='text-gray-900 rounded-md font-small'>
-									<OrderStatus ordering={order} />
-								</h3>
 							</div>
 						</div>
+						<h3 className='text-gray-900 rounded-md font-small'>
+							<OrderStatus ordering={order} />
+						</h3>
 					</li>
 				))}
 			</ul>

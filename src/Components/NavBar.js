@@ -54,7 +54,7 @@ const user = {
 	name: 'Whitney Francis',
 	email: 'whitneyfrancis@example.com',
 };
-const userNavigation = [{ name: 'Your Profile', href: '/profilePage' }];
+const userNavigation = [{ name: 'Your Profile', href: '/profile' }];
 
 export default function NavBar() {
 	const { logout, user } = useAuth0();
