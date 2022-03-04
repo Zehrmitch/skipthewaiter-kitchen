@@ -20,7 +20,6 @@ function App() {
 			<Route exact path='/dashboard' element={<Orders />}></Route>
 			<Route exact path='/profile' element={<Profile />}></Route>
 			<Route exact path='/menubuilder' element={<MenuBuilderPage />}></Route>
-
 		</Routes>
 	);
 }
