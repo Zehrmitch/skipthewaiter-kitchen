@@ -8,11 +8,11 @@ import { PlusIcon, MinusIcon } from '@heroicons/react/solid';
 const MenuForm = () => {
 
     const [inputFields, setInputFields] = useState([
-        { itemName: ''}
+        { productName: '', productPrice:'', productDescription: ''}
     ]);
 
     const handleAddFields = (index) => {
-        setInputFields([...inputFields, { itemName: '' }])
+        setInputFields([...inputFields, { itemName: '' , price: '', productDescription: ''}])
     }
 
     const handleRemoveFields = (index) => {
@@ -23,7 +23,7 @@ const MenuForm = () => {
 
     const handleChangeInput = (index, event) => {
         const values = [...inputFields];
-        values[index].itemName = event.target.value
+        values[index][event.target.name] = event.target.value
         setInputFields(values);
     }
 
@@ -42,9 +42,23 @@ const MenuForm = () => {
                                 <h2 class="text-3xl font-bold mb-4">Menu Item {index + 1}</h2>
                                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                                        Item Name
+                                        Product Name
                                     </label>
-                                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" value={inputField.itemName} id="grid-first-name" type="text" onChange={event => handleChangeInput(index, event)} />
+                                    <input name="productName" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" value={inputField.itemName} id="grid-first-name" type="text" onChange={event => handleChangeInput(index, event)} />
+                                    <p class="text-red-500 text-xs italic">Please fill out this field.</p>
+                                </div>
+                                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                                        Product Price
+                                    </label>
+                                    <input name="productPrice" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" value={inputField.productPrice} id="grid-productPrice" type="text" onChange={event => handleChangeInput(index, event)} />
+                                    <p class="text-red-500 text-xs italic">Please fill out this field.</p>
+                                </div>
+                                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                                        Product Description
+                                    </label>
+                                    <input name="productDescription" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" value={inputField.productDescription} id="grid-productDescription" type="text" onChange={event => handleChangeInput(index, event)} />
                                     <p class="text-red-500 text-xs italic">Please fill out this field.</p>
                                 </div>
                                 <PlusIcon onClick={(event) => handleAddFields(index+1)} className='text-indigo-500 : text-gray-400 group-hover:text-gray-500, -ml-0.5 mr-2 h-5 w-5'/>
