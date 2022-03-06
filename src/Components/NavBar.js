@@ -5,7 +5,7 @@ const tabs = [
 	{ name: 'Dashboard', href: '/dashboard', icon: TemplateIcon, id: 0 },
 	{ name: 'Profile', href: '/profile', icon: UserIcon, id: 1 },
 	{ name: 'Menu Builder', href:'/menubuilder', icon: TableIcon, id: 2},
-	{ name: 'Menu Preview', href:'/menupreview', icon: EyeIcon, id: 3}
+	{ name: 'Menu Preview', href:'/menupreview', icon: EyeIcon, id: 3},
 ];
 
 function classNames(...classes) {

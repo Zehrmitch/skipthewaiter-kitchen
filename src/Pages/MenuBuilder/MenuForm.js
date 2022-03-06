@@ -6,13 +6,12 @@ import { PlusIcon, MinusIcon } from '@heroicons/react/solid';
 
 
 const MenuForm = () => {
-
     const [inputFields, setInputFields] = useState([
         { productName: '', productPrice:'', productDescription: ''}
     ]);
 
     const handleAddFields = (index) => {
-        setInputFields([...inputFields, { itemName: '' , price: '', productDescription: ''}])
+        setInputFields([...inputFields, { productName: '' , price: '', productDescription: ''}])
     }
 
     const handleRemoveFields = (index) => {
@@ -44,7 +43,7 @@ const MenuForm = () => {
                                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
                                         Product Name
                                     </label>
-                                    <input name="productName" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" value={inputField.itemName} id="grid-first-name" type="text" onChange={event => handleChangeInput(index, event)} />
+                                    <input name="productName" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" value={inputField.productName} id="grid-itemName" type="text" onChange={event => handleChangeInput(index, event)} />
                                     <p class="text-red-500 text-xs italic">Please fill out this field.</p>
                                 </div>
                                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -63,6 +62,11 @@ const MenuForm = () => {
                                 </div>
                                 <PlusIcon onClick={(event) => handleAddFields(index+1)} className='text-indigo-500 : text-gray-400 group-hover:text-gray-500, -ml-0.5 mr-2 h-5 w-5'/>
                                 <MinusIcon style={{display: inputFields.length>1 ? 'block': 'none' }} onClick={(event) => handleRemoveFields(index)} className='text-indigo-500 : text-gray-400 group-hover:text-gray-500, -ml-0.5 mr-2 h-5 w-5'/>
+                                <div>
+                                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                                        Uplo
+                                    </label>
+                                </div>
                             </div>     
                         ))}
                     </form>

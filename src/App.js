@@ -5,6 +5,7 @@ import Loading from './Components/Loading';
 import Profile from './Pages/Profile';
 import Login from './Pages/Login';
 import MenuBuilderPage from './Pages/MenuBuilder/MenuBuilderPage';
+import MenuPreview from './Pages/MenuBuilder/MenuPreview';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
 			<Route exact path='/dashboard' element={<Orders />}></Route>
 			<Route exact path='/profile' element={<Profile />}></Route>
 			<Route exact path='/menubuilder' element={<MenuBuilderPage />}></Route>
+			<Route exact path='/menupreview' element={<MenuPreview />}></Route>
 		</Routes>
 	);
 }
