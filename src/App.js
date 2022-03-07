@@ -7,7 +7,9 @@ import Login from './Pages/Login';
 import History from './Pages/History';
 import OrderOverview from './Pages/OrderOverview';
 import MenuBuilderPage from './Pages/MenuBuilder/MenuBuilderPage';
+import MenuPreview from './Pages/MenuBuilder/MenuPreview';
 import NotFoundPage from './Pages/NotFoundPage';
+
 
 function App() {
 	const { isLoading } = useAuth0();
@@ -21,6 +23,7 @@ function App() {
 			<Route exact path='/' element={<Login />}></Route>
 			<Route exact path='/dashboard' element={<Orders />}></Route>
 			<Route exact path='/profile' element={<Profile />}></Route>
+			<Route exact path='/menupreview' element={<MenuPreview />}></Route>
 			<Route exact path='/history' element={<History />}></Route>
 			<Route
 				path='/order/:tableId/:storeId'
