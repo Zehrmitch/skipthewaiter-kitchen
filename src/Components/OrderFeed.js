@@ -2,191 +2,112 @@ import { CheckIcon, XIcon } from '@heroicons/react/solid';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const timeline = [
-	{
-		id: 1,
-		content: 'Applied to',
-		target: 'Front End Developer',
-		href: '#',
-		date: 'Sep 20',
-		datetime: '2020-09-20',
-		icon: CheckIcon,
-		iconBackground: 'bg-green-500',
-	},
-	{
-		id: 2,
-		content: 'Advanced to phone screening by',
-		target: 'Bethany Blake',
-		href: '#',
-		date: 'Sep 22',
-		datetime: '2020-09-22',
-		icon: XIcon,
-		iconBackground: 'bg-red-500',
-	},
-	{
-		id: 3,
-		content: 'Completed phone screening with',
-		target: 'Martha Gardner',
-		href: '#',
-		date: 'Sep 28',
-		datetime: '2020-09-28',
-		icon: CheckIcon,
-		iconBackground: 'bg-green-500',
-	},
-	{
-		id: 4,
-		content: 'Advanced to interview by',
-		target: 'Bethany Blake',
-		href: '#',
-		date: 'Sep 30',
-		datetime: '2020-09-30',
-		icon: XIcon,
-		iconBackground: 'bg-red-500',
-	},
-	{
-		id: 5,
-		content: 'Completed interview with',
-		target: 'Katherine Snyder',
-		href: '#',
-		date: 'Oct 4',
-		datetime: '2020-10-04',
-		icon: CheckIcon,
-		iconBackground: 'bg-green-500',
-	},
-	{
-		id: 6,
-		content: 'Applied to',
-		target: 'Front End Developer',
-		href: '#',
-		date: 'Sep 20',
-		datetime: '2020-09-20',
-		icon: CheckIcon,
-		iconBackground: 'bg-green-400',
-	},
-	{
-		id: 7,
-		content: 'Advanced to phone screening by',
-		target: 'Bethany Blake',
-		href: '#',
-		date: 'Sep 22',
-		datetime: '2020-09-22',
-		icon: XIcon,
-		iconBackground: 'bg-red-500',
-	},
-	{
-		id: 8,
-		content: 'Completed phone screening with',
-		target: 'Martha Gardner',
-		href: '#',
-		date: 'Sep 28',
-		datetime: '2020-09-28',
-		icon: CheckIcon,
-		iconBackground: 'bg-green-500',
-	},
-	{
-		id: 9,
-		content: 'Advanced to interview by',
-		target: 'Bethany Blake',
-		href: '#',
-		date: 'Sep 30',
-		datetime: '2020-09-30',
-		icon: XIcon,
-		iconBackground: 'bg-red-500',
-	},
-	{
-		id: 10,
-		content: 'Completed interview with',
-		target: 'Katherine Snyder',
-		href: '#',
-		date: 'Oct 4',
-		datetime: '2020-10-04',
-		icon: CheckIcon,
-		iconBackground: 'bg-green-500',
-	},
-];
-
 function classNames(...classes) {
 	return classes.filter(Boolean).join(' ');
 }
 
 export default function OrderFeed() {
-	const [loading, setLoading] = useState(true);
+	const [loaded, setLoaded] = useState(false);
 	const [orders, setOrders] = useState(null);
 
-	async function getOrders() {
-		setLoading(true);
-		axios
-			.get('http://localhost:8080//allincompleteorders', {
-				headers: {
-					// Authorization: `Bearer ${token}`,
-				},
-			})
-			.then((response) => {
-				setOrders(response.data);
-			})
-			.catch((error) => {
-				console.error('Error fetching data: ', error);
-			})
-			.finally(() => {
-				setLoading(false);
-			});
-	}
-
 	useEffect(() => {
-		getOrders();
+		setLoaded(false);
 	}, []);
 
-	if (loading) return <p>Loading</p>;
+	function handleResponse(response) {
+		setOrders(response.data);
+		setLoaded(true);
+	}
 
-	return (
-		<div className='flow-root'>
-			<ul role='list' className='-mb-8'>
-				{timeline.map((event, eventIdx) => (
-					<li key={event.id}>
-						<div className='relative pb-8'>
-							{eventIdx !== timeline.length - 1 ? (
-								<span
-									className='absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200'
-									aria-hidden='true'
-								/>
-							) : null}
-							<div className='relative flex space-x-3'>
-								<div>
-									<span
-										className={classNames(
-											event.iconBackground,
-											'h-8 w-8 rounded-full flex items-center justify-center ring-8 ring-white'
-										)}
-									>
-										<event.icon
-											className='h-5 w-5 text-white'
-											aria-hidden='true'
-										/>
-									</span>
-								</div>
-								<div className='min-w-0 flex-1 pt-1.5 flex justify-between space-x-4'>
-									<div>
-										<p className='text-sm text-gray-500'>
-											{event.content}{' '}
-											<a
-												href={event.href}
-												className='font-medium text-gray-900'
-											>
-												{event.target}
-											</a>
-										</p>
+	function formatStatus(status) {
+		if (status === 'ready') {
+			return (
+				<div>
+					<span
+						className={classNames(
+							'bg-green-500',
+							'h-8 w-8 rounded-full flex items-center justify-center ring-8 ring-white'
+						)}
+					>
+						<CheckIcon
+							className='h-5 w-5 text-white'
+							aria-hidden='true'
+						/>
+					</span>
+				</div>
+			);
+		} else {
+			return (
+				<div>
+					<span
+						className={classNames(
+							'bg-red-500',
+							'h-8 w-8 rounded-full flex items-center justify-center ring-8 ring-white'
+						)}
+					>
+						<XIcon
+							className='h-5 w-5 text-white'
+							aria-hidden='true'
+						/>
+					</span>
+				</div>
+			);
+		}
+	}
+
+	function formatDate(date) {
+		const DT = date.split('T');
+		const MYD = DT[0].split('-');
+		const T = DT[1].split(':');
+		const day = new Date(MYD[0], MYD[1], MYD[2]);
+		const month = day.toLocaleString('default', { month: 'long' });
+		const result = month + ' ' + MYD[1] + ' @ ' + T[0] + ':' + T[1];
+		return result;
+	}
+
+	function formatPrice(price) {
+		const result = price.toFixed(2);
+		return result;
+	}
+
+	if (!loaded) {
+		const apiUrl = 'http://localhost:8080/api/order/all';
+		axios.get(apiUrl).then(handleResponse);
+		return <h1>Loading</h1>;
+	} else {
+		return (
+			<div className='flow-root'>
+				<ul role='list' className='-mb-8'>
+					{orders.map((order) => (
+						<li key={order._id}>
+							<div className='relative pb-8'>
+								<div className='relative flex space-x-3'>
+									<div className='flex'>
+										{formatStatus(order.orderPhase)}
 									</div>
-									<div className='text-right text-sm whitespace-nowrap text-gray-500'>
-										<time dateTime={event.datetime}>
-											{event.date}
-										</time>
+									<div className='min-w-0 pt-1.5 flex justify-between space-x-4'>
+										<div>
+											<p className='text-xs text-gray-500'>
+												ID:{order._id}
+											</p>
+											<p className='text-xs text-gray-500'>
+												Price:{' '}
+												{'$' +
+													formatPrice(
+														order.totalPrice
+													)}
+											</p>
+											<p className='text-xs text-gray-500'>
+												{formatDate(order.timeOfOrder)}
+											</p>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-					</li>
-				))}
-			</ul>
-		</div>
-	);
+						</li>
+					))}
+				</ul>
+			</div>
+		);
+	}
 }

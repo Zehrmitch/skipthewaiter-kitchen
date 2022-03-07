@@ -3,7 +3,7 @@ import axios from 'axios';
 import { CheckIcon, PlusIcon } from '@heroicons/react/solid';
 
 const OrderStatus = (props) => {
-	const [status, setStatus] = useState('Ordered');
+	const [status, setStatus] = useState();
 	const [loaded, setLoaded] = useState(false);
 
 	useEffect(() => {
@@ -16,6 +16,7 @@ const OrderStatus = (props) => {
 
 	function getStatus() {
 		setStatus(props.ordering.orderPhase);
+		console.log(status);
 		setLoaded(true);
 		return props.ordering.orderPhase;
 	}
@@ -41,7 +42,7 @@ const OrderStatus = (props) => {
 		const apiUrl = `http://localhost:8080/api/order/orderstarted/${storeID}/${tableID}`;
 		await axios
 			.put(apiUrl)
-			.then(console.log('Changed'))
+			.then(console.log('started'))
 			.catch((err) => console.log(err));
 	}
 
@@ -50,7 +51,7 @@ const OrderStatus = (props) => {
 		const apiUrl = `http://localhost:8080/api/order/orderready/${storeID}/${tableID}`;
 		await axios
 			.put(apiUrl)
-			.then(console.log('Changed'))
+			.then(console.log('ready'))
 			.catch((err) => console.log(err));
 	}
 
@@ -58,13 +59,13 @@ const OrderStatus = (props) => {
 		return <p>Loading</p>;
 	} else {
 		return (
-			<div>
-				<div className='text-s font-small lex text-center'>
+			<div className='justify-center items-center flex flex-col'>
+				<div className='text-s font-small justify-center pt-4'>
 					{formatStatus()}
 				</div>
 				<div className='px-2 py-2'>
-					<div className='flex justify-between'>
-						<div className='px-2 py-2 bg-yellow-200 rounded-lg flex justify-between'>
+					<div className='flex pb-2'>
+						<div className='px-2 pr-4 py-2 bg-yellow-200 rounded-lg flex justify-between mr-2'>
 							<PlusIcon
 								className='w-6 h-6 text-gray-400'
 								aria-hidden='true'
