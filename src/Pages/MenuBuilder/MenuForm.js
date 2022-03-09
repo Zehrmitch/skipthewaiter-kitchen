@@ -47,22 +47,22 @@ const MenuForm = () => {
 
 	const handleChangeInput = (index, event) => {
 		const values = [...inputFields];
-		if(event.target.name == 'productPrice'){
+		if (event.target.name == 'productPrice') {
 			values[index][event.target.name] = parseInt(event.target.value);
-		}else{
+		} else {
 			values[index][event.target.name] = event.target.value;
 		}
-		
+
 		setInputFields(values);
 	};
 
 	const saveMenu = () => {
-        const values = [...inputFields];
-        //61a79c8a77fabcc990bbbd60
-        values.forEach((menuItem) =>{
-            console.log(menuItem);
-        });
-    };
+		const values = [...inputFields];
+		//61a79c8a77fabcc990bbbd60
+		values.forEach((menuItem) => {
+			console.log(menuItem);
+		});
+	};
 
 	const uploadImages = async (files, i) => {
 		setFilesToUpload(files.length);
