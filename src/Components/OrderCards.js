@@ -1,4 +1,3 @@
-import { CheckIcon, PlusIcon } from '@heroicons/react/solid';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import OrderStatus from './OrderStatus';
@@ -18,7 +17,9 @@ export default function OrderCards() {
 		getOrder();
 
 		const interval = setInterval(() => getOrder(), 10000);
+
 		return () => {
+			console.log('Clear Interval');
 			clearInterval(interval);
 		};
 	}, []);

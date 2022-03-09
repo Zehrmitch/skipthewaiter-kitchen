@@ -11,44 +11,46 @@ const Profile = () => {
 		isAuthenticated && (
 			<div>
 				<NavBar />
-				<div class='flex items-center pt-12 w-full justify-center'>
-					<div class='max-w-lg'>
-						<div class='bg-white shadow-xl rounded-lg py-3'>
-							<div class='photo-wrapper p-2'>
+				<div className='flex items-center pt-12 w-full justify-center'>
+					<div className='max-w-lg'>
+						<div className='bg-white shadow-xl rounded-lg py-3'>
+							<div className='photo-wrapper p-2'>
 								<img
-									class='w-32 h-32 rounded-full mx-auto'
+									className='w-32 h-32 rounded-full mx-auto'
 									src={user.picture}
 									alt={user.name}
 								/>
 							</div>
-							<div class='p-2'>
-								<h3 class='text-center text-xl text-gray-900 font-medium leading-8'>
+							<div className='p-2'>
+								<h3 className='text-center text-xl text-gray-900 font-medium leading-8'>
 									{user.nickname}
 								</h3>
-								<div class='text-center text-gray-400 text-xs font-semibold'>
+								<div className='text-center text-gray-400 text-xs font-semibold'>
 									<p>Account Manager</p>
 								</div>
-								<table class='text-xs my-3'>
+								<table className='text-xs my-3'>
 									<tbody>
 										<tr>
-											<td class='px-2 py-2 text-gray-500 font-semibold'>
+											<td className='px-2 py-2 text-gray-500 font-semibold'>
 												Email Address
 											</td>
-											<td class='px-2 py-2'>
+											<td className='px-2 py-2'>
 												{user.name}
 											</td>
 										</tr>
 										<tr>
-											<td class='px-2 py-2 text-gray-500 font-semibold'>
+											<td className='px-2 py-2 text-gray-500 font-semibold'>
 												Total Purchases
 											</td>
-											<td class='px-2 py-2'>$17.38</td>
+											<td className='px-2 py-2'>
+												$17.38
+											</td>
 										</tr>
 										<tr>
-											<td class='px-2 py-2 text-gray-500 font-semibold'>
+											<td className='px-2 py-2 text-gray-500 font-semibold'>
 												Years of operation
 											</td>
-											<td class='px-2 py-2'>
+											<td className='px-2 py-2'>
 												2 years 10 months
 											</td>
 										</tr>
