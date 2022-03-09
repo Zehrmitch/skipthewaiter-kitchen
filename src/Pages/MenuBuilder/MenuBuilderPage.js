@@ -11,7 +11,7 @@ const MenuBuilder = () => {
 		isAuthenticated && (
 			<div>
 				<NavBar />
-				<MenuForm />
+        <MenuForm />
 			</div>
 		)
 	);
