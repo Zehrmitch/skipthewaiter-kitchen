@@ -11,12 +11,17 @@ const History = () => {
 
 	async function getOrders() {
 		setLoading(true);
+		const storeId = sessionStorage.getItem('storeId');
 		axios
-			.get('http:///localhost:8080/allincompleteorders', {
-				headers: {
-					// Authorization: `Bearer ${token}`,
-				},
-			})
+			.get(
+				'http:///localhost:8080/api/order/allincompleteorders/' +
+					storeId,
+				{
+					headers: {
+						// Authorization: `Bearer ${token}`,
+					},
+				}
+			)
 			.then((response) => {
 				setOrders(response.data);
 			})

@@ -6,7 +6,53 @@ import { PlusIcon, XIcon } from '@heroicons/react/solid';
 
 
 
+<<<<<<< Updated upstream
 const MenuForm = () => {
+=======
+		await Promise.all(
+			files.map(async (file) => {
+				var fileName = file.name;
+				var fileType = file.type;
+				console.log(file);
+
+				try {
+					axios
+						.post('http://localhost:8080/sign_s3', {
+							fileName: fileName,
+							fileType: fileType,
+						})
+						.then((response) => {
+							var returnData = response.data.data.returnData;
+							var signedRequest = returnData.signedRequest;
+
+							setImageUrls([...imageUrls, returnData.url]);
+
+							const values = [...inputFields];
+							values[i].url = returnData.url;
+							setInputFields(values);
+
+							// Put the fileType in the headers for the upload
+							var options = {
+								headers: {
+									'Content-Type': fileType,
+								},
+							};
+
+							axios
+								.put(signedRequest, file, options)
+								.then((result) => {
+									console.log('Response from s3');
+								})
+								.catch((error) => {
+									console.log(error);
+								});
+						});
+				} catch (error) {
+					console.log(error);
+				}
+			})
+		);
+>>>>>>> Stashed changes
 
     const [inputFields, setInputField] = useState([
         { itemName: '', price: '' }

@@ -48,7 +48,6 @@ export default function OrderStats() {
 			.get('http://localhost:8080/api/order/avgorderpricetoday')
 			.then((data) => {
 				res = data.data.avgTotalPrice;
-				console.log('getAvgPrice:', data.data.avgTotalPrice);
 				setAveragePrice(res);
 				return res;
 			});
@@ -61,7 +60,6 @@ export default function OrderStats() {
 			.get('http://localhost:8080/api/order/avgorderedtoreadytoday')
 			.then((data) => {
 				res = data.data.avgCompletionTime;
-				console.log('avgCompletionTime:', data.data.avgCompletionTime);
 				setAverageOrder(res);
 				setLoaded(true);
 				return res;
