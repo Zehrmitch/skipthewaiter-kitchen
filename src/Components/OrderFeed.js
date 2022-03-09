@@ -12,6 +12,17 @@ export default function OrderFeed() {
 
 	useEffect(() => {
 		setLoaded(false);
+		function getOrder() {
+			const storeId = sessionStorage.getItem('storeId');
+			const apiUrl = 'http://localhost:8080/api/order/all/' + storeId;
+			axios.get(apiUrl).then(handleResponse);
+		}
+		getOrder();
+
+		const interval = setInterval(() => getOrder(), 10000);
+		return () => {
+			clearInterval(interval);
+		};
 	}, []);
 
 	function handleResponse(response) {
