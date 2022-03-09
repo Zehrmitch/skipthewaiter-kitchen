@@ -58,9 +58,12 @@ const MenuForm = () => {
 
 	const saveMenu = () => {
 		const values = [...inputFields];
-		//61a79c8a77fabcc990bbbd60
 		values.forEach((menuItem) => {
-			console.log(menuItem);
+			if(menuItem._id == '-1'){
+				delete menuItem._id;
+				axios.post('http://localhost:8080/api/product', menuItem)
+			}
+			
 		});
 	};
 
