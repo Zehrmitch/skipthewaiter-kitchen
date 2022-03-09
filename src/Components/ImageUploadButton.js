@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import ImageUploadPreview from './ImageUploadPreview';
 
 const ImageUploadButton = (props) => {
-	const { uploadImages, filesToUpload } = props;
+	const { uploadImages, filesToUpload, i } = props;
 	const [showModal, setShowModal] = useState(false);
 	const hiddenInput = useRef(null);
 	const [files, setFiles] = useState([]);
@@ -42,7 +42,7 @@ const ImageUploadButton = (props) => {
 	// Upload and reset the files array
 	const handleUpload = async () => {
 		setShowModal(false);
-		uploadImages(files);
+		uploadImages(files, i);
 		setFiles([]);
 	};
 

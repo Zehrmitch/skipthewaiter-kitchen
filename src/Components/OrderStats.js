@@ -6,21 +6,21 @@ import axios from 'axios';
 const stats = [
 	{
 		name: 'Total Orders',
-		stat: '71,897',
-		previousStat: '70,946',
+		stat: 'order',
+		previousStat: '49',
 		change: '12%',
 		changeType: 'increase',
 	},
 	{
 		name: 'Avg. Completion Time',
-		stat: '2.45 min',
+		stat: 'time',
 		previousStat: '2.36 min',
 		change: '2.02%',
 		changeType: 'increase',
 	},
 	{
 		name: 'Avg. Order Cost',
-		stat: '$23.92',
+		stat: 'cost',
 		previousStat: '$26.31',
 		change: '4.05%',
 		changeType: 'decrease',
@@ -34,6 +34,7 @@ function classNames(...classes) {
 export default function OrderStats() {
 	const [averagePrice, setAveragePrice] = useState(0);
 	const [averageOrder, setAverageOrder] = useState(0);
+	const [numOrder, setNumOrder] = useState(0);
 	const [loaded, setLoaded] = useState(false);
 
 	useEffect(() => {
@@ -69,9 +70,31 @@ export default function OrderStats() {
 		return 'error';
 	}
 
+	function getNumOrder() {
+		var res = '';
+		axios.get('http://localhost:8080/api/order/all').then((data) => {
+			res = data.data.length;
+			setNumOrder(res);
+			setLoaded(true);
+			return res;
+		});
+		return 'error';
+	}
+
+	function setStat(name) {
+		if (name == 'order') {
+			return numOrder;
+		} else if (name == 'time') {
+			return averageOrder;
+		} else {
+			return averagePrice;
+		}
+	}
+
 	if (!loaded) {
 		getAvgPrice();
 		getAvgOrder();
+		getNumOrder();
 		return <h1>Loading</h1>;
 	} else {
 		return (
@@ -84,7 +107,7 @@ export default function OrderStats() {
 							</dt>
 							<dd className='mt-1 flex justify-between items-baseline md:block lg:flex'>
 								<div className='flex items-baseline text-md font-semibold text-indigo-600'>
-									<a>{averagePrice}</a>
+									<a>{setStat(item.stat)}</a>
 									<span className='ml-2 text-sm font-medium text-gray-500'>
 										from {item.previousStat}
 									</span>

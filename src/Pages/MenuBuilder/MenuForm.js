@@ -5,7 +5,7 @@ import ImageUploadButton from '../../Components/ImageUploadButton';
 
 const MenuForm = () => {
 	const [inputFields, setInputFields] = useState([
-		{ productName: '', productPrice: '', productDescription: '' },
+		{ productName: '', productPrice: '', productDescription: '', url: '' },
 	]);
 	const [filesToUpload, setFilesToUpload] = useState(0);
 	const [uploadedFiles, setUploadedFiles] = useState(false);
@@ -14,7 +14,12 @@ const MenuForm = () => {
 	const handleAddFields = (index) => {
 		setInputFields([
 			...inputFields,
-			{ productName: '', price: '', productDescription: '' },
+			{
+				productName: '',
+				productPrice: '',
+				productDescription: '',
+				url: '',
+			},
 		]);
 	};
 
@@ -32,7 +37,7 @@ const MenuForm = () => {
 
 	const saveMenu = () => {};
 
-	const uploadImages = async (files) => {
+	const uploadImages = async (files, i) => {
 		setFilesToUpload(files.length);
 		setUploadedFiles(false);
 
@@ -54,7 +59,13 @@ const MenuForm = () => {
 							console.log(
 								'Recieved a signed request ' + signedRequest
 							);
-							setImageUrls(returnData.url);
+
+							setImageUrls([...imageUrls, returnData.url]);
+
+							const values = [...inputFields];
+							values[i].url = returnData.url;
+							setInputFields(values);
+							console.log(inputFields);
 
 							// Put the fileType in the headers for the upload
 							var options = {
@@ -161,6 +172,7 @@ const MenuForm = () => {
 									<ImageUploadButton
 										uploadImages={uploadImages}
 										filesToUpload={filesToUpload}
+										i={index}
 									/>
 									<div className='flex justify-center '>
 										<PlusIcon
