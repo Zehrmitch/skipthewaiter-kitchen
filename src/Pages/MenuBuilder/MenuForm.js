@@ -4,29 +4,37 @@ import axios from 'axios';
 import ImageUploadButton from '../../Components/ImageUploadButton';
 
 const MenuForm = () => {
+	
+	const storeId = sessionStorage.getItem('storeId');
 	const [inputFields, setInputFields] = useState([
-		{ productName: '', productPrice: '', productImageUrl: '', productDescription: '', storeId: '' },
+		{_id:'', productName: '', productPrice: '', productImageUrl: '', productDescription: '', storeId: storeId },
 	]);
 	const [filesToUpload, setFilesToUpload] = useState(0);
 	const [uploadedFiles, setUploadedFiles] = useState(false);
 	const [imageUrls, setImageUrls] = useState([]);
+	const [loaded, setLoaded] = useState(false);
 
-	const getmenuItems = () => {
-        //get request
-        //object retured is not null
-        //setInputFields to object
-	}
-
+	
+	if (!loaded) {
+		const apiUrl =
+			'http://localhost:8080/api/product/all/' + storeId;
+		axios.get(apiUrl).then(response => {
+			if(response && response.data){
+				setInputFields(response.data);
+				setLoaded(true);
+		}});
+	}	
 
 	const handleAddFields = (index) => {
 		setInputFields([
 			...inputFields,
 			{
+				_id: '-1',
 				productName: '',
 				productPrice: '',
 				productImageUrl: '',
 				productDescription: '',
-				storeId: ''
+				storeId: storeId
 			},
 		]);
 	};
@@ -116,7 +124,7 @@ const MenuForm = () => {
 	return (
 		<div class='min-h-screen flex items-center justify-center'>
 			<div class='bg-white p-8 rounded shadow-2xl lg:w-1/2'>
-				<form class='w-full max-w-lg'>
+				<form>
 					{inputFields.map((inputField, index) => (
 						<>
 							<h2 class='text-3xl font-bold mb-4'>
