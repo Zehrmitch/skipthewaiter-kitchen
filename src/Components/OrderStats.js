@@ -14,7 +14,7 @@ const stats = [
 	{
 		name: 'Avg. Completion Time',
 		stat: 'time',
-		previousStat: '2.36 min',
+		previousStat: '381.29 min',
 		change: '2.02%',
 		changeType: 'increase',
 	},
@@ -22,8 +22,8 @@ const stats = [
 		name: 'Avg. Order Cost',
 		stat: 'cost',
 		previousStat: '$26.31',
-		change: '4.05%',
-		changeType: 'decrease',
+		change: '21.05%',
+		changeType: 'increase',
 	},
 ];
 
@@ -47,13 +47,14 @@ export default function OrderStats() {
 		var res = '';
 		const storeId = sessionStorage.getItem('storeId');
 		axios
-			.get(
-				'http://localhost:8080/api/order/avgorderpricetoday/' + storeId
-			)
+			.get('http://localhost:8080/api/order/totalpurchased/' + storeId)
 			.then((data) => {
-				res = data.data.avgTotalPrice;
-				setAveragePrice(res);
+				res = data.data.sumTotalPrice;
+				setAveragePrice((res / numOrder).toFixed(2));
 				return res;
+			})
+			.catch((error) => {
+				console.log('error');
 			});
 		return 'error';
 	}
@@ -100,9 +101,9 @@ export default function OrderStats() {
 	}
 
 	if (!loaded) {
-		getAvgPrice();
 		getAvgOrder();
 		getNumOrder();
+		getAvgPrice();
 		return <h1>Loading</h1>;
 	} else {
 		return (
