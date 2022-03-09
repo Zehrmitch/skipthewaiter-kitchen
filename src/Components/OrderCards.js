@@ -9,6 +9,18 @@ export default function OrderCards() {
 
 	useEffect(() => {
 		setLoaded(false);
+		function getOrder() {
+			const storeId = sessionStorage.getItem('storeId');
+			const apiUrl =
+				'http://localhost:8080/api/order/allinlast12hours/' + storeId;
+			axios.get(apiUrl).then(handleResponse);
+		}
+		getOrder();
+
+		const interval = setInterval(() => getOrder(), 10000);
+		return () => {
+			clearInterval(interval);
+		};
 	}, []);
 
 	function handleResponse(response) {
