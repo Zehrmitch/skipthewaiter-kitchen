@@ -45,8 +45,11 @@ export default function OrderStats() {
 
 	function getAvgPrice() {
 		var res = '';
+		const storeId = sessionStorage.getItem('storeId');
 		axios
-			.get('http://localhost:8080/api/order/avgorderpricetoday')
+			.get(
+				'http://localhost:8080/api/order/avgorderpricetoday/' + storeId
+			)
 			.then((data) => {
 				res = data.data.avgTotalPrice;
 				console.log('getAvgPrice:', data.data.avgTotalPrice);
@@ -58,8 +61,12 @@ export default function OrderStats() {
 
 	function getAvgOrder() {
 		var res = '';
+		const storeId = sessionStorage.getItem('storeId');
 		axios
-			.get('http://localhost:8080/api/order/avgorderedtoreadytoday')
+			.get(
+				'http://localhost:8080/api/order/avgorderedtoreadytoday/' +
+					storeId
+			)
 			.then((data) => {
 				res = data.data.avgCompletionTime;
 				console.log('avgCompletionTime:', data.data.avgCompletionTime);
@@ -72,12 +79,15 @@ export default function OrderStats() {
 
 	function getNumOrder() {
 		var res = '';
-		axios.get('http://localhost:8080/api/order/all').then((data) => {
-			res = data.data.length;
-			setNumOrder(res);
-			setLoaded(true);
-			return res;
-		});
+		const storeId = sessionStorage.getItem('storeId');
+		axios
+			.get('http://localhost:8080/api/order/all/' + storeId)
+			.then((data) => {
+				res = data.data.length;
+				setNumOrder(res);
+				setLoaded(true);
+				return res;
+			});
 		return 'error';
 	}
 

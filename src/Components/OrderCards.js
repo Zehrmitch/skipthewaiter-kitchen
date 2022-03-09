@@ -17,7 +17,9 @@ export default function OrderCards() {
 	}
 
 	if (!loaded) {
-		const apiUrl = 'http://localhost:8080/api/order/allinlast12hours';
+		const storeId = sessionStorage.getItem('storeId');
+		const apiUrl =
+			'http://localhost:8080/api/order/allinlast12hours/' + storeId;
 		axios.get(apiUrl).then(handleResponse);
 		return <h1>Loading</h1>;
 	} else {

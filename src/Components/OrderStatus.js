@@ -5,18 +5,16 @@ import { CheckIcon, PlusIcon } from '@heroicons/react/solid';
 const OrderStatus = (props) => {
 	const [status, setStatus] = useState();
 	const [loaded, setLoaded] = useState(false);
+	const [id, setId] = useState('');
 
 	useEffect(() => {
 		setLoaded(false);
 		setStatus(getStatus());
 	}, []);
 
-	const storeID = props.ordering.storeId;
-	const tableID = props.ordering.tableId;
-
 	function getStatus() {
+		setId(props.ordering._id);
 		setStatus(props.ordering.orderPhase);
-		console.log(status);
 		setLoaded(true);
 		return props.ordering.orderPhase;
 	}
@@ -39,7 +37,7 @@ const OrderStatus = (props) => {
 
 	async function handleclickStart() {
 		setStatus('started');
-		const apiUrl = `http://localhost:8080/api/order/orderstarted/${storeID}/${tableID}`;
+		const apiUrl = `http://localhost:8080/api/order/orderstarted/` + id;
 		await axios
 			.put(apiUrl)
 			.then(console.log('started'))
@@ -48,10 +46,12 @@ const OrderStatus = (props) => {
 
 	async function handleclickComplete() {
 		setStatus('ready');
-		const apiUrl = `http://localhost:8080/api/order/orderready/${storeID}/${tableID}`;
+		const apiUrl = 'http://localhost:8080/api/order/orderready/' + id;
 		await axios
 			.put(apiUrl)
-			.then(console.log('ready'))
+			.then((res) => {
+				console.log('Res: ' + res.data);
+			})
 			.catch((err) => console.log(err));
 	}
 
