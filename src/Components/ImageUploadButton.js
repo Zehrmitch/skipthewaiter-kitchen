@@ -84,31 +84,31 @@ const ImageUploadButton = (props) => {
 		<div>
 			{filesToUpload === 0 && (
 				<button
-					class='hover:bg-[#68C9BA] text-black border-2font-bold py-2 px-4 rounded bg-[#F7BA20] focus:outline-none whitespace-nowrap text-sm'
+					className='hover:bg-[#68C9BA] text-black border-2font-bold py-2 px-4 rounded bg-[#F7BA20] focus:outline-none whitespace-nowrap text-sm'
 					onClick={handleClick}
 				>
 					Upload Image
 				</button>
 			)}
 			{filesToUpload > 0 && (
-				<button class='bg-green-500 text-black border-2 border-[#F7BA20] font-bold py-2 px-4 rounded focus:outline-none cursor-not-allowed'>
-					<span class='mr-2'></span>
+				<button className='bg-green-500 text-black border-2 border-[#F7BA20] font-bold py-2 px-4 rounded focus:outline-none cursor-not-allowed'>
+					<span className='mr-2'></span>
 					Uploading
 				</button>
 			)}
 			{showModal && (
 				<div>
-					<div class='justify-center items-center flex overflow-x-hidden h-3/4 overflow-y-auto fixed inset-x-0 top-20 z-5 bg-opacity-60'>
-						<main class='container mx-auto max-w-screen-lg h-full border-2 border-gray-500 rounded-lg'>
+					<div className='justify-center items-center flex overflow-x-hidden h-3/4 overflow-y-auto fixed inset-x-0 top-20 z-5 bg-opacity-60'>
+						<main className='container mx-auto max-w-screen-lg h-full border-2 border-gray-500 rounded-lg'>
 							<article
 								aria-label='File Upload Modal'
-								class='relative h-full flex flex-col bg-white shadow-xl rounded-md'
+								className='relative h-full flex flex-col bg-white shadow-xl rounded-md'
 								onDrop={dropHandler}
 								onDragOver={dragOverHandler}
 							>
-								<section class='h-full overflow-auto p-8 w-full flex flex-col'>
-									<header class='border-dashed border-2 border-gray-400 py-12 flex flex-col justify-center items-center'>
-										<p class='mb-3 font-semibold text-gray-900 flex flex-wrap justify-center'>
+								<section className='h-full overflow-auto p-8 w-full flex flex-col'>
+									<header className='border-dashed border-2 border-gray-400 py-12 flex flex-col justify-center items-center'>
+										<p className='mb-3 font-semibold text-gray-900 flex flex-wrap justify-center'>
 											<span>Drag and drop your</span>
 											&nbsp;
 											<span>file anywhere or</span>
@@ -118,32 +118,32 @@ const ImageUploadButton = (props) => {
 											onChange={handleFileChange}
 											type='file'
 											multiple
-											class='hidden'
+											className='hidden'
 										/>
 										<button
 											onClick={handleChooseFileClick}
-											class='mt-2 rounded-md px-4 py-2 hover:bg-[#68C9BA] bg-[#F7BA20] focus:shadow-outline focus:outline-none'
+											className='mt-2 rounded-md px-4 py-2 hover:bg-[#68C9BA] bg-[#F7BA20] focus:shadow-outline focus:outline-none'
 										>
 											Select a file
 										</button>
 									</header>
 
-									<h1 class='pt-8 pb-3 font-semibold sm:text-lg text-gray-900'>
+									<h1 className='pt-8 pb-3 font-semibold sm:text-lg text-gray-900'>
 										To Upload
 									</h1>
 
-									<ul class='flex flex-1 flex-wrap -m-1'>
+									<ul className='flex flex-1 flex-wrap -m-1'>
 										{!files && (
 											<li
 												id='empty'
-												class='h-full w-full text-center flex flex-coljustify-center items-center'
+												className='h-full w-full text-center flex flex-coljustify-center items-center'
 											>
 												<img
-													class='mx-auto w-32'
+													className='mx-auto w-32'
 													src='https://user-images.githubusercontent.com/507615/54591670-ac0a0180-4a65-11e9-846c-e55ffce0fe7b.png'
 													alt='no data'
 												/>
-												<span class='text-small text-gray-500'>
+												<span className='text-small text-gray-500'>
 													No files selected
 												</span>
 											</li>
@@ -161,16 +161,16 @@ const ImageUploadButton = (props) => {
 									</ul>
 								</section>
 
-								<footer class='flex justify-end px-8 pb-8 pt-4'>
+								<footer className='flex justify-end px-8 pb-8 pt-4'>
 									<button
 										onClick={handleUpload}
-										class='rounded-md px-4 py-2 bg-[#68C9BA] hover:bg-[#F7BA20] text-black focus:shadow-outline focus:outline-none'
+										className='rounded-md px-4 py-2 bg-[#68C9BA] hover:bg-[#F7BA20] text-black focus:shadow-outline focus:outline-none'
 									>
 										Upload Now
 									</button>
 									<button
 										onClick={cancelUpload}
-										class='ml-3 rounded-md px-4 py-2 hover:bg-gray-300 focus:shadow-outline focus:outline-none'
+										className='ml-3 rounded-md px-4 py-2 hover:bg-gray-300 focus:shadow-outline focus:outline-none'
 									>
 										Cancel
 									</button>

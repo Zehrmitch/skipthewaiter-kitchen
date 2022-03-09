@@ -20,7 +20,9 @@ export default function OrderFeed() {
 		getOrder();
 
 		const interval = setInterval(() => getOrder(), 10000);
+
 		return () => {
+			console.log('Clear Interval');
 			clearInterval(interval);
 		};
 	}, []);
