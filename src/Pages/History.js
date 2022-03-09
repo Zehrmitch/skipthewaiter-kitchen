@@ -11,8 +11,9 @@ const History = () => {
 
 	async function getOrders() {
 		setLoading(true);
+		const storeId = sessionStorage.getItem('storeId');
 		axios
-			.get('http:///localhost:8080/allincompleteorders', {
+			.get('http:///localhost:8080/allincompleteorders/' + storeId, {
 				headers: {
 					// Authorization: `Bearer ${token}`,
 				},

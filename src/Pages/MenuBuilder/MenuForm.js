@@ -4,26 +4,31 @@ import axios from 'axios';
 import ImageUploadButton from '../../Components/ImageUploadButton';
 
 const MenuForm = () => {
-	
 	const storeId = sessionStorage.getItem('storeId');
 	const [inputFields, setInputFields] = useState([
-		{_id:'', productName: '', productPrice: '', productImageUrl: '', productDescription: '', storeId: storeId },
+		{
+			_id: '',
+			productName: '',
+			productPrice: '',
+			productImageUrl: '',
+			productDescription: '',
+			storeId: storeId,
+		},
 	]);
 	const [filesToUpload, setFilesToUpload] = useState(0);
 	const [uploadedFiles, setUploadedFiles] = useState(false);
 	const [imageUrls, setImageUrls] = useState([]);
 	const [loaded, setLoaded] = useState(false);
 
-	
 	if (!loaded) {
-		const apiUrl =
-			'http://localhost:8080/api/product/all/' + storeId;
-		axios.get(apiUrl).then(response => {
-			if(response && response.data){
+		const apiUrl = 'http://localhost:8080/api/product/all/' + storeId;
+		axios.get(apiUrl).then((response) => {
+			if (response && response.data) {
 				setInputFields(response.data);
 				setLoaded(true);
-		}});
-	}	
+			}
+		});
+	}
 
 	const handleAddFields = (index) => {
 		setInputFields([
@@ -34,7 +39,7 @@ const MenuForm = () => {
 				productPrice: '',
 				productImageUrl: '',
 				productDescription: '',
-				storeId: storeId
+				storeId: storeId,
 			},
 		]);
 	};
@@ -59,10 +64,10 @@ const MenuForm = () => {
 	const saveMenu = () => {
 		const values = [...inputFields];
 		values.forEach((menuItem) => {
-			if(menuItem._id == '-1'){
+			if (menuItem._id == '-1') {
 				delete menuItem._id;
-				axios.post('http://localhost:8080/api/product', menuItem)
-			}			
+				axios.post('http://localhost:8080/api/product', menuItem);
+			}
 		});
 	};
 
@@ -85,16 +90,12 @@ const MenuForm = () => {
 						.then((response) => {
 							var returnData = response.data.data.returnData;
 							var signedRequest = returnData.signedRequest;
-							console.log(
-								'Recieved a signed request ' + signedRequest
-							);
 
 							setImageUrls([...imageUrls, returnData.url]);
 
 							const values = [...inputFields];
-							values[i].url = returnData.url;
+							values[i].productImageUrl = returnData.url;
 							setInputFields(values);
-							console.log(inputFields);
 
 							// Put the fileType in the headers for the upload
 							var options = {
@@ -106,7 +107,6 @@ const MenuForm = () => {
 							axios
 								.put(signedRequest, file, options)
 								.then((result) => {
-									console.log(result);
 									console.log('Response from s3');
 								})
 								.catch((error) => {
@@ -124,29 +124,26 @@ const MenuForm = () => {
 	};
 
 	return (
-		<div class='min-h-screen flex items-center justify-center'>
-			<div class='bg-white p-8 rounded shadow-2xl lg:w-1/2'>
+		<div className='min-h-screen flex items-center justify-center'>
+			<div className='bg-white p-8 rounded shadow-2xl lg:w-1/2'>
 				<form>
 					{inputFields.map((inputField, index) => (
 						<>
-							<h2 class='text-3xl font-bold mb-4'>
+							<h2 className='text-3xl font-bold mb-4'>
 								Menu Item {index + 1}
 							</h2>
 							<div
-								class='grid mb-6 grid-cols-4 gap-4 grid-rows-1'
+								className='grid mb-6 grid-cols-4 gap-4 grid-rows-1'
 								//key={index}
 							>
 								<div className='col-span-3'>
-									<div class='w-full px-3 mb-6 md:mb-0'>
-										<label
-											class='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2'
-											for='grid-first-name'
-										>
+									<div className='w-full px-3 mb-6 md:mb-0'>
+										<label className='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2'>
 											Product Name
 										</label>
 										<input
 											name='productName'
-											class='appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white'
+											className='appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white'
 											value={inputField.productName}
 											id='grid-itemName'
 											type='text'
@@ -156,16 +153,13 @@ const MenuForm = () => {
 											}
 										/>
 									</div>
-									<div class='w-full px-3 mb-6 md:mb-0'>
-										<label
-											class='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2'
-											for='grid-first-name'
-										>
+									<div className='w-full px-3 mb-6 md:mb-0'>
+										<label className='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2'>
 											Product Price
 										</label>
 										<input
 											name='productPrice'
-											class='appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white'
+											className='appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white'
 											value={inputField.productPrice}
 											id='grid-productPrice'
 											type='text'
@@ -175,16 +169,13 @@ const MenuForm = () => {
 											}
 										/>
 									</div>
-									<div class='w-full px-3 mb-6 md:mb-0'>
-										<label
-											class='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2'
-											for='grid-first-name'
-										>
+									<div className='w-full px-3 mb-6 md:mb-0'>
+										<label className='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2'>
 											Product Description
 										</label>
 										<input
 											name='productDescription'
-											class='appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white'
+											className='appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white'
 											value={
 												inputField.productDescription
 											}
