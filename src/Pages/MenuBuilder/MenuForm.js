@@ -39,6 +39,9 @@ const MenuForm = () => {
 		]);
 	};
 
+
+const MenuForm = () => {
+
 	const handleRemoveFields = (index) => {
 		const values = [...inputFields];
 		values.splice(index, 1);
@@ -85,16 +88,13 @@ const MenuForm = () => {
 						.then((response) => {
 							var returnData = response.data.data.returnData;
 							var signedRequest = returnData.signedRequest;
-							console.log(
-								'Recieved a signed request ' + signedRequest
-							);
+
 
 							setImageUrls([...imageUrls, returnData.url]);
 
 							const values = [...inputFields];
 							values[i].url = returnData.url;
 							setInputFields(values);
-							console.log(inputFields);
 
 							// Put the fileType in the headers for the upload
 							var options = {
@@ -106,7 +106,6 @@ const MenuForm = () => {
 							axios
 								.put(signedRequest, file, options)
 								.then((result) => {
-									console.log(result);
 									console.log('Response from s3');
 								})
 								.catch((error) => {

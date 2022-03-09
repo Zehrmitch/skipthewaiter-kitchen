@@ -16,7 +16,8 @@ const Orders = () => {
 	}, []);
 
 	async function getStore() {
-		const name = 'tonysoaprano'; //mitchloveswings
+		const name = 'mitchloveswings'; //mitchloveswings tonysoaprano
+
 		try {
 			axios
 				.get(
