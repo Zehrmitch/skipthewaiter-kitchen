@@ -3,7 +3,8 @@ import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 import Loading from '../../Components/Loading.js'
 import NavBar from '../../Components/NavBar.js';
 import axios from 'axios';
-
+import Grid from '@material-ui/core/Grid';
+import { findByLabelText } from '@testing-library/react';
 
 
 const MenuPreview = () => {
@@ -21,19 +22,66 @@ const MenuPreview = () => {
 			if(response && response.data){
 				setInputFields(response.data);
 				setLoaded(true);
+				
 		}});
 	}	
+	const divStyle1={
+		display:"flex",
+		width:"100%",
+		justifyContent:"space-betwwen",
+		flexDirection:"column",
+		borderRadius:"20px",
+		border: "1px solid lightblue",
+		height:"100%"
+	};
+	const imgStyle={
+		maxHeight:"200px",
+		objectFit:"cover",
+		borderRaidus:"20px 20px 0 0"
+	};
+	const divStyle2={
+		fontFamily:"Arial,Helvetica,sans-serif",
+		padding:"1rem",
+		height:"100%"
+	};
+	const divStyle3={
+		margin:"40px"
+	}
 
 	return (
 		isAuthenticated && (
-			<div>
-				<NavBar />
+			<>
+			<NavBar/>
+			<div style={divStyle3}>
+			<Grid container spacing={3}>
+			{inputFields?.map((item) => (
+			<Grid item key={item._id} xs={12} sm={4}>
+			<div style={divStyle1}>
+			<img
+			style={imgStyle}
+			src={item.productImageUrl} alt={item.productName} />
+      		<div
+			  style={divStyle2}
+			  >
+        		<h3>{item.productName}</h3>
+        		<p>{item.productDescription}</p>
+        		<h3>${item.productPrice}</h3>
+      		</div>
+			  </div>
+			</Grid>
+		  ))}
+			</Grid>
+				
+				
 			</div>
+			</>
 		)
 	);
+	
 };
 
 export default withAuthenticationRequired(MenuPreview, {
 	onRedirecting: () => <Loading />,
 	returnTo: () => '/menupreview',
 });
+

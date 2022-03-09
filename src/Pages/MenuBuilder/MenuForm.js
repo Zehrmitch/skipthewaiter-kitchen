@@ -20,15 +20,16 @@ const MenuForm = () => {
 	const [imageUrls, setImageUrls] = useState([]);
 	const [loaded, setLoaded] = useState(false);
 
-	if (!loaded) {
+	/*if (!loaded) {
 		const apiUrl = 'http://localhost:8080/api/product/all/' + storeId;
 		axios.get(apiUrl).then((response) => {
 			if (response && response.data) {
 				setInputFields(response.data);
 				setLoaded(true);
+				
 			}
 		});
-	}
+	}*/
 
 	const handleAddFields = (index) => {
 		setInputFields([
