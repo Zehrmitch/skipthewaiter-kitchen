@@ -5,18 +5,24 @@ import ImageUploadButton from '../../Components/ImageUploadButton';
 
 const MenuForm = () => {
 	const [inputFields, setInputFields] = useState([
-		{ productName: '', productPrice: '', productImageUrl: '', productDescription: '', storeId: '' },
+		{
+			productName: '',
+			productPrice: '',
+			productImageUrl: '',
+			productDescription: '',
+			url: '',
+			storeId: '',
+		},
 	]);
 	const [filesToUpload, setFilesToUpload] = useState(0);
 	const [uploadedFiles, setUploadedFiles] = useState(false);
 	const [imageUrls, setImageUrls] = useState([]);
 
 	const getmenuItems = () => {
-        //get request
-        //object retured is not null
-        //setInputFields to object
-	}
-
+		//get request
+		//object retured is not null
+		//setInputFields to object
+	};
 
 	const handleAddFields = (index) => {
 		setInputFields([
@@ -26,7 +32,8 @@ const MenuForm = () => {
 				productPrice: '',
 				productImageUrl: '',
 				productDescription: '',
-				storeId: ''
+				url: '',
+				storeId: '',
 			},
 		]);
 	};
@@ -39,22 +46,22 @@ const MenuForm = () => {
 
 	const handleChangeInput = (index, event) => {
 		const values = [...inputFields];
-		if(event.target.name == 'productPrice'){
+		if (event.target.name == 'productPrice') {
 			values[index][event.target.name] = parseInt(event.target.value);
-		}else{
+		} else {
 			values[index][event.target.name] = event.target.value;
 		}
-		
+
 		setInputFields(values);
 	};
 
 	const saveMenu = () => {
-        const values = [...inputFields];
-        //61a79c8a77fabcc990bbbd60
-        values.forEach((menuItem) =>{
-            console.log(menuItem);
-        });
-    };
+		const values = [...inputFields];
+		//61a79c8a77fabcc990bbbd60
+		values.forEach((menuItem) => {
+			console.log(menuItem);
+		});
+	};
 
 	const uploadImages = async (files, i) => {
 		setFilesToUpload(files.length);
