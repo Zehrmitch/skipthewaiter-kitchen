@@ -5,11 +5,18 @@ import ImageUploadButton from '../../Components/ImageUploadButton';
 
 const MenuForm = () => {
 	const [inputFields, setInputFields] = useState([
-		{ productName: '', productPrice: '', productDescription: '', url: '' },
+		{ productName: '', productPrice: '', productImageUrl: '', productDescription: '', storeId: '' },
 	]);
 	const [filesToUpload, setFilesToUpload] = useState(0);
 	const [uploadedFiles, setUploadedFiles] = useState(false);
 	const [imageUrls, setImageUrls] = useState([]);
+
+	const getmenuItems = () => {
+        //get request
+        //object retured is not null
+        //setInputFields to object
+	}
+
 
 	const handleAddFields = (index) => {
 		setInputFields([
@@ -17,8 +24,9 @@ const MenuForm = () => {
 			{
 				productName: '',
 				productPrice: '',
+				productImageUrl: '',
 				productDescription: '',
-				url: '',
+				storeId: ''
 			},
 		]);
 	};
@@ -31,11 +39,22 @@ const MenuForm = () => {
 
 	const handleChangeInput = (index, event) => {
 		const values = [...inputFields];
-		values[index][event.target.name] = event.target.value;
+		if(event.target.name == 'productPrice'){
+			values[index][event.target.name] = parseInt(event.target.value);
+		}else{
+			values[index][event.target.name] = event.target.value;
+		}
+		
 		setInputFields(values);
 	};
 
-	const saveMenu = () => {};
+	const saveMenu = () => {
+        const values = [...inputFields];
+        //61a79c8a77fabcc990bbbd60
+        values.forEach((menuItem) =>{
+            console.log(menuItem);
+        });
+    };
 
 	const uploadImages = async (files, i) => {
 		setFilesToUpload(files.length);
@@ -105,7 +124,7 @@ const MenuForm = () => {
 							</h2>
 							<div
 								class='grid mb-6 grid-cols-4 gap-4 grid-rows-1'
-								key={index}
+								//key={index}
 							>
 								<div className='col-span-3'>
 									<div class='w-full px-3 mb-6 md:mb-0'>
