@@ -52,7 +52,6 @@ export default function OrderStats() {
 			)
 			.then((data) => {
 				res = data.data.avgTotalPrice;
-				console.log('getAvgPrice:', data.data.avgTotalPrice);
 				setAveragePrice(res);
 				return res;
 			});
@@ -69,7 +68,6 @@ export default function OrderStats() {
 			)
 			.then((data) => {
 				res = data.data.avgCompletionTime;
-				console.log('avgCompletionTime:', data.data.avgCompletionTime);
 				setAverageOrder(res);
 				setLoaded(true);
 				return res;

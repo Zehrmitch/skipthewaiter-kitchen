@@ -44,6 +44,9 @@ const MenuForm = () => {
 		]);
 	};
 
+
+const MenuForm = () => {
+
 	const handleRemoveFields = (index) => {
 		const values = [...inputFields];
 		values.splice(index, 1);
