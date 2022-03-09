@@ -62,8 +62,7 @@ const MenuForm = () => {
 			if(menuItem._id == '-1'){
 				delete menuItem._id;
 				axios.post('http://localhost:8080/api/product', menuItem)
-			}
-			
+			}			
 		});
 	};
 
