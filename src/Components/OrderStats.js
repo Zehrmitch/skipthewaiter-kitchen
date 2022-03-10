@@ -1,4 +1,3 @@
-/* This example requires Tailwind CSS v2.0+ */
 import { ArrowSmDownIcon, ArrowSmUpIcon } from '@heroicons/react/solid';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -7,7 +6,7 @@ const stats = [
 	{
 		name: 'Total Orders',
 		stat: 'order',
-		previousStat: '49',
+		previousStat: '49 orders',
 		change: '12%',
 		changeType: 'increase',
 	},
@@ -47,10 +46,17 @@ export default function OrderStats() {
 		var res = '';
 		const storeId = sessionStorage.getItem('storeId');
 		axios
+			.get('http://localhost:8080/api/order/all/' + storeId)
+			.then((data) => {
+				res = data.data.length;
+				setNumOrder(res);
+			});
+
+		axios
 			.get('http://localhost:8080/api/order/totalpurchased/' + storeId)
 			.then((data) => {
 				res = data.data.sumTotalPrice;
-				setAveragePrice((res / numOrder).toFixed(2));
+				setAveragePrice('$' + (res / numOrder).toFixed(2));
 				return res;
 			})
 			.catch((error) => {

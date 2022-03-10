@@ -53,7 +53,7 @@ const MenuForm = () => {
 	const handleChangeInput = (index, event) => {
 		const values = [...inputFields];
 		if (event.target.name == 'productPrice') {
-			values[index][event.target.name] = parseInt(event.target.value);
+			values[index][event.target.name] = event.target.value;
 		} else {
 			values[index][event.target.name] = event.target.value;
 		}
@@ -95,6 +95,7 @@ const MenuForm = () => {
 
 							const values = [...inputFields];
 							values[i].productImageUrl = returnData.url;
+							console.log(values[i].productImageUrl);
 							setInputFields(values);
 
 							// Put the fileType in the headers for the upload
